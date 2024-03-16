@@ -1,5 +1,6 @@
 package com.nabilaitnacer.categoryservice.service.impl;
 
+import com.nabilaitnacer.categoryservice.dto.CategoriesAllResponseDto;
 import com.nabilaitnacer.categoryservice.dto.CategoryDto;
 import com.nabilaitnacer.categoryservice.entity.Category;
 import com.nabilaitnacer.categoryservice.exception.ResourceNotFoundException;
@@ -11,7 +12,10 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -50,13 +54,29 @@ public class CategoryServiceImpl implements ICategoryService {
     }
 
     @Override
-    public CategoryDto getCategory(Long categoryId) {
+    public CategoriesAllResponseDto getCategory(Long categoryId) {
         return null;
     }
 
     @Override
-    public List<CategoryDto> getAllCategories() {
-        return null;
+    public List<CategoriesAllResponseDto> getAllCategories() {
+        List<Category> categories = categoryRepository.findAll();
+        Map<Category, List<CategoryDto>> categoryMap = groupCategoriesByParent(categories, modelMapper);
+        List<CategoriesAllResponseDto> categoriesAllResponseDtos = new ArrayList<>();
+        categoryMap.forEach((k, v) -> {
+            CategoriesAllResponseDto categoriesWithParent = new CategoriesAllResponseDto();
+            categoriesWithParent.setId(k.getId());
+            categoriesWithParent.setName(k.getName());
+            categoriesWithParent.setDescription(k.getDescription());
+            categoriesWithParent.setChildren(new ArrayList<>());
+
+            v.forEach(category ->
+                    categoriesWithParent.getChildren().add(modelMapper.map(category, CategoryDto.class))
+            );
+
+            categoriesAllResponseDtos.add(categoriesWithParent);
+        });
+        return categoriesAllResponseDtos;
     }
 
     @Override
@@ -67,6 +87,13 @@ public class CategoryServiceImpl implements ICategoryService {
     private Category getCategoryParent(Long parentId) {
         return categoryRepository.findById(parentId)
                 .orElseThrow(() -> new ResourceNotFoundException("Parent category", "id", parentId.toString()));
+    }
+    private Map<Category, List<CategoryDto>> groupCategoriesByParent(List<Category> categories, ModelMapper modelMapper) {
+
+        return categories.stream()
+                .filter(category -> category.getParent() != null)
+                .collect(Collectors.groupingBy(Category::getParent,
+                        Collectors.mapping(category -> modelMapper.map(category, CategoryDto.class), Collectors.toList())));
     }
 }
 

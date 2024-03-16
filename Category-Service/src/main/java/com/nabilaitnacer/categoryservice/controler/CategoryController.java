@@ -1,10 +1,13 @@
 package com.nabilaitnacer.categoryservice.controler;
 
+import com.nabilaitnacer.categoryservice.dto.CategoriesAllResponseDto;
 import com.nabilaitnacer.categoryservice.dto.CategoryDto;
 import com.nabilaitnacer.categoryservice.service.ICategoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/categories")
@@ -19,6 +22,11 @@ public class CategoryController {
     @PutMapping("/{id}")
     public ResponseEntity<CategoryDto> updateCategory(@PathVariable Long id, @RequestBody CategoryDto categoryDto) {
         return ResponseEntity.ok(categoryService.updateCategory(id, categoryDto));
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<CategoriesAllResponseDto>> getAllCategories() {
+        return ResponseEntity.ok(categoryService.getAllCategories());
     }
 
 }

@@ -4,17 +4,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.io.Serializable;
+import java.util.List;
 
-/**
- * DTO for {@link com.nabilaitnacer.categoryservice.entity.Category}
- */
-@AllArgsConstructor
 @Data
+@AllArgsConstructor
 @NoArgsConstructor
-public class CategoryDto implements Serializable {
+public class CategoriesAllResponseDto {
     private  Long id;
     private  String name;
     private  String description;
-    private  Long parentId;
+    private List<CategoryDto> children;
 }
