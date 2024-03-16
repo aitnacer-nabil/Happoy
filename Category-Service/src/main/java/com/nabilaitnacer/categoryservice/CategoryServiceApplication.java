@@ -1,40 +1,35 @@
 package com.nabilaitnacer.categoryservice;
 
-import com.nabilaitnacer.categoryservice.dto.CategoriesAllResponseDto;
-import com.nabilaitnacer.categoryservice.dto.CategoryDto;
-import com.nabilaitnacer.categoryservice.entity.Category;
+
 import com.nabilaitnacer.categoryservice.repository.CategoryRepository;
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.info.Contact;
+import io.swagger.v3.oas.annotations.info.Info;
+import io.swagger.v3.oas.annotations.info.License;
 import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
-import org.springframework.boot.CommandLineRunner;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 @SpringBootApplication
-@RequiredArgsConstructor
+@OpenAPIDefinition(
+        info = @Info(
+                title = "Category Service API Documentation",
+                description = "Category Service API Documentation for Happoy MarketPlace  microservice",
+                version = "v1",
+                contact = @Contact(
+                        name = "Nabil Aitnacer",
+                        email = "nabil.aitnacer@gmail.com",
+                        url = "www.linkedin.com/in/nabil-ait-nacer"
+                )
+        )
+)
 public class CategoryServiceApplication {
-    private final CategoryRepository categoryRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(CategoryServiceApplication.class, args);
     }
 
-    @Bean
-    CommandLineRunner runner(ModelMapper modelMapper) {
-        return args -> {
-            System.out.println("Category Service is running...");
-            List<Category> categories = categoryRepository.findAll();
-
-        };
-
-
-    }
 
 }
