@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: category-service
+
+server:
+    port: 8091
+
+
