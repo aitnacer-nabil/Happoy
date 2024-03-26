@@ -2,6 +2,7 @@ package com.nabilaitnacer.categoryservice.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.dao.DataIntegrityViolationException;
 
 /**
  * Category entity class.
@@ -14,6 +15,7 @@ import lombok.*;
 @Entity
 @Data
 @Getter @Setter @ToString @AllArgsConstructor @NoArgsConstructor
+@Builder
 public class Category {
     /**
      * Id of the category.
@@ -21,6 +23,7 @@ public class Category {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long id;
     /**
      * Description of the category.
@@ -40,6 +43,11 @@ public class Category {
     @JoinColumn(name = "parent_id")
     private Category parent;
 
-
+    public void  setParent(Category parent){
+        if(this.equals(parent)){
+            throw new DataIntegrityViolationException("Category cannot be parent of itself");
+        }
+        this.parent = parent;
+    }
 
 }

@@ -11,4 +11,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @author aitnacer-nabil
  */
 public interface CategoryRepository  extends JpaRepository<Category, Long> {
+
 }
