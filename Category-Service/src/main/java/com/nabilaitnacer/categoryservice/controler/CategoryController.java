@@ -12,9 +12,16 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * CategoryController class.
+ * This class is a REST controller for managing categories.
+ * It provides endpoints for creating, updating, and retrieving categories.
+ * It is annotated with @RestController, @RequestMapping, and @RequiredArgsConstructor.
+ * It uses the ICategoryService to perform operations on the categories.
+ *
  * @author Nabil Ait Nacer
  */
 @Tag(
@@ -28,6 +35,13 @@ import java.util.List;
 public class CategoryController {
     private final ICategoryService categoryService;
 
+    /**
+     * Endpoint for creating a new category.
+     * It accepts a CategoryDto as a request body and returns a ResponseEntity with the created CategoryDto.
+     *
+     * @param categoryDto the category to create
+     * @return a ResponseEntity with the created CategoryDto
+     */
     @Operation(
             summary = "Create a new category",
             description = "Create a new category in the Database"
@@ -42,6 +56,15 @@ public class CategoryController {
     public ResponseEntity<CategoryDto> createCategory(@RequestBody CategoryDto categoryDto) {
         return ResponseEntity.ok(categoryService.createCategory(categoryDto));
     }
+
+    /**
+     * Endpoint for updating a category.
+     * It accepts a CategoryDto as a request body and an id as a path variable and returns a ResponseEntity with the updated CategoryDto.
+     *
+     * @param id the id of the category to update
+     * @param categoryDto the updated category
+     * @return a ResponseEntity with the updated CategoryDto
+     */
     @Operation(
             summary = "Update a category",
             description = "Update a category in the Database"
@@ -56,6 +79,12 @@ public class CategoryController {
     public ResponseEntity<CategoryDto> updateCategory(@PathVariable Long id, @RequestBody CategoryDto categoryDto) {
         return ResponseEntity.ok(categoryService.updateCategory(id, categoryDto));
     }
+    /**
+     * Endpoint for retrieving all categories.
+     * It returns a ResponseEntity with a list of CategoriesAllResponseDto.
+     *
+     * @return a ResponseEntity with a list of CategoriesAllResponseDto
+     */
     @Operation(
             summary = "Get All Categories With Parent",
             description = "Get All Categories With Parent in the Database"

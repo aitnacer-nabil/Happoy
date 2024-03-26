@@ -12,10 +12,23 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import java.time.LocalDateTime;
 
+/**
+ * GlobalExceptionHandler class for handling global exceptions.
+ * This class extends ResponseEntityExceptionHandler and is annotated with @ControllerAdvice to provide global exception handling.
+ * It provides methods to handle different types of exceptions and return appropriate HTTP status codes and error messages.
+ *
+ * @author aitnacer-nabil
+ */
 @ControllerAdvice
 @Slf4j
 public class GlobalExceptionHandler  extends ResponseEntityExceptionHandler {
-
+    /**
+     * Handles all types of exceptions.
+     *
+     * @param exception the exception to handle
+     * @param request the current web request
+     * @return a ResponseEntity containing the error response DTO
+     */
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponseDto> handleGlobalException(Exception exception, WebRequest request){
         ErrorResponseDto errorResponseDto = new ErrorResponseDto(
@@ -26,7 +39,13 @@ public class GlobalExceptionHandler  extends ResponseEntityExceptionHandler {
         );
         return  ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponseDto);
     }
-
+    /**
+     * Handles ResourceNotFoundException.
+     *
+     * @param exception the exception to handle
+     * @param request the current web request
+     * @return a ResponseEntity containing the error response DTO
+     */
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<ErrorResponseDto> handleResourceNotFoundException(ResourceNotFoundException exception, WebRequest request){
         ErrorResponseDto errorResponseDto = new ErrorResponseDto(
@@ -37,6 +56,13 @@ public class GlobalExceptionHandler  extends ResponseEntityExceptionHandler {
         );
         return  ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponseDto);
     }
+    /**
+     * Handles CategoryAlreadyExistsException.
+     *
+     * @param exception the exception to handle
+     * @param request the current web request
+     * @return a ResponseEntity containing the error response DTO
+     */
     @ExceptionHandler(CategoryAlreadyExistsException.class)
     public ResponseEntity<ErrorResponseDto> handleCategoryAlreadyExistsException(CategoryAlreadyExistsException exception, WebRequest request){
         ErrorResponseDto errorResponseDto = new ErrorResponseDto(
@@ -47,6 +73,13 @@ public class GlobalExceptionHandler  extends ResponseEntityExceptionHandler {
         );
         return  ResponseEntity.status(HttpStatus.CONFLICT).body(errorResponseDto);
     }
+    /**
+     * Handles DataIntegrityViolationException.
+     *
+     * @param exception the exception to handle
+     * @param request the current web request
+     * @return a ResponseEntity containing the error response DTO
+     */
     @ExceptionHandler(DataIntegrityViolationException.class)
     public ResponseEntity<ErrorResponseDto> handleDataIntegrityViolationException(DataIntegrityViolationException exception, WebRequest request){
         ErrorResponseDto errorResponseDto = new ErrorResponseDto(

@@ -6,8 +6,6 @@ import com.nabilaitnacer.categoryservice.entity.Category;
 import com.nabilaitnacer.categoryservice.exception.ResourceNotFoundException;
 import com.nabilaitnacer.categoryservice.repository.CategoryRepository;
 import com.nabilaitnacer.categoryservice.service.ICategoryService;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -17,12 +15,25 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+/**
+ * CategoryRepository interface for Category entity.
+ * This interface extends JpaRepository which provides JPA related methods
+ * like save(), findById(), findAll(), deleteById() etc. for performing CRUD operations.
+ *
+ * @author aitnacer-nabil
+ */
 @Service
 @RequiredArgsConstructor
 public class CategoryServiceImpl implements ICategoryService {
     private final CategoryRepository categoryRepository;
     private final ModelMapper modelMapper;
 
+    /**
+     * Creates a new category.
+     *
+     * @param categoryDto the category DTO
+     * @return the created category DTO
+     */
     @Override
     public CategoryDto createCategory(CategoryDto categoryDto) {
         Category category = modelMapper.map(categoryDto, Category.class);
@@ -34,6 +45,13 @@ public class CategoryServiceImpl implements ICategoryService {
         return modelMapper.map(savedCategory, CategoryDto.class);
 
     }
+    /**
+     * Updates an existing category.
+     *
+     * @param id the id of the category to update
+     * @param categoryDto the category DTO with updated values
+     * @return the updated category DTO
+     */
 
     @Override
     public CategoryDto updateCategory(Long id ,CategoryDto categoryDto) {
@@ -52,12 +70,22 @@ public class CategoryServiceImpl implements ICategoryService {
         return modelMapper.map(updatedCategory, CategoryDto.class);
 
     }
-
+    /**
+     * Retrieves a category by its id.
+     *
+     * @param categoryId the id of the category to retrieve
+     * @return the retrieved category DTO
+     */
     @Override
     public CategoriesAllResponseDto getCategory(Long categoryId) {
+        //TODO: Implement this method
         return null;
     }
-
+    /**
+     * Retrieves all categories.
+     *
+     * @return a list of all categories DTO
+     */
     @Override
     public List<CategoriesAllResponseDto> getAllCategories() {
         List<Category> categories = categoryRepository.findAll();
@@ -79,15 +107,32 @@ public class CategoryServiceImpl implements ICategoryService {
         return categoriesAllResponseDtos;
     }
 
+    /**
+     * Deletes a category by its id.
+     *
+     * @param categoryId the id of the category to delete
+     */
     @Override
     public void deleteCategory(Long categoryId) {
-
+    //TODO : Implement this method
     }
-
+    /**
+     * Retrieves a parent category by its id.
+     *
+     * @param parentId the id of the parent category to retrieve
+     * @return the retrieved parent category
+     */
     private Category getCategoryParent(Long parentId) {
         return categoryRepository.findById(parentId)
                 .orElseThrow(() -> new ResourceNotFoundException("Parent category", "id", parentId.toString()));
     }
+    /**
+     * Groups categories by their parent.
+     *
+     * @param categories the list of categories to group
+     * @param modelMapper the ModelMapper to map Category to CategoryDto
+     * @return a map of categories grouped by their parent
+     */
     private Map<Category, List<CategoryDto>> groupCategoriesByParent(List<Category> categories, ModelMapper modelMapper) {
 
         return categories.stream()
