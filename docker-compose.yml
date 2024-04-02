@@ -1,0 +1,12 @@
+services:
+  category-service:
+    build:
+      context: ./category-service
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mongo
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/category-service
+
