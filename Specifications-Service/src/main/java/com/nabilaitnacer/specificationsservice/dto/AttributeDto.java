@@ -1,7 +1,9 @@
 package com.nabilaitnacer.specificationsservice.dto;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
@@ -9,9 +11,10 @@ import java.io.Serializable;
  * DTO for {@link com.nabilaitnacer.specificationsservice.entity.Attribute}
  */
 @AllArgsConstructor
-@Getter
+@Data
+@NoArgsConstructor
 public class AttributeDto implements Serializable {
-    private final Long id;
-    private final String name;
-    private final long categoryId;
+    private  Long id;
+    private  String name;
+    private  long categoryId;
 }

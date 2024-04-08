@@ -31,6 +31,12 @@ public class GlobalExceptionHandler  extends ResponseEntityExceptionHandler {
      */
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponseDto> handleGlobalException(Exception exception, WebRequest request){
+        log.info("Handling global exception: {}", exception.fillInStackTrace());
+        log.info("Handling global exception: {}", exception.getCause());
+        log.info("Handling global exception: {}", exception.getMessage());
+        log.info("Handling global exception: {}", exception);
+
+
         ErrorResponseDto errorResponseDto = new ErrorResponseDto(
                 request.getDescription(false),
                 exception.getMessage(),
@@ -48,6 +54,8 @@ public class GlobalExceptionHandler  extends ResponseEntityExceptionHandler {
      */
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<ErrorResponseDto> handleResourceNotFoundException(ResourceNotFoundException exception, WebRequest request){
+        log.info("Handling global exception: {}", exception.fillInStackTrace());
+        log.info("Handling global exception: {}", exception.getCause());
         ErrorResponseDto errorResponseDto = new ErrorResponseDto(
                 request.getDescription(false),
                 exception.getMessage(),
@@ -65,6 +73,8 @@ public class GlobalExceptionHandler  extends ResponseEntityExceptionHandler {
      */
     @ExceptionHandler(AttributeAlreadyExistsException.class)
     public ResponseEntity<ErrorResponseDto> handleCategoryAlreadyExistsException(AttributeAlreadyExistsException exception, WebRequest request){
+        log.info("Handling global exception: {}", exception.fillInStackTrace());
+        log.info("Handling global exception: {}", exception.getCause());
         ErrorResponseDto errorResponseDto = new ErrorResponseDto(
                 request.getDescription(false),
                 exception.getMessage(),
@@ -82,9 +92,11 @@ public class GlobalExceptionHandler  extends ResponseEntityExceptionHandler {
      */
     @ExceptionHandler(DataIntegrityViolationException.class)
     public ResponseEntity<ErrorResponseDto> handleDataIntegrityViolationException(DataIntegrityViolationException exception, WebRequest request){
+        log.info("Handling global exception: {}", exception.fillInStackTrace());
+        log.info("Handling global exception: {}", exception.getCause());
         ErrorResponseDto errorResponseDto = new ErrorResponseDto(
                 request.getDescription(false),
-                "Category name already exists..",
+                "Attribute  name already exists..",
                 HttpStatus.CONFLICT,
                 LocalDateTime.now()
         );

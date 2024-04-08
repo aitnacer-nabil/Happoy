@@ -1,6 +1,7 @@
 package com.nabilaitnacer.specificationsservice.services;
 
 import com.nabilaitnacer.specificationsservice.dto.AttributeValueDto;
+import com.nabilaitnacer.specificationsservice.dto.AttributeValueRequest;
 
 import java.util.List;
 
@@ -23,11 +24,18 @@ public interface AttributeValueService {
     AttributeValueDto getAttributeValueById(Long id);
 
     /**
+     * Get attributes values by post id
+     * @param postId of attribute value
+     * @return attribute value
+     */
+    AttributeValueRequest getAttributeValueRequestByAdsId(Long AdsId);
+
+/**
      * Create attribute value
-     * @param attributeValueDto
+     * @param attributeValueRequest
      * @return created attribute value
      */
-    AttributeValueDto createAttributeValue(AttributeValueDto attributeValueDto);
+    void createAttributeValue(AttributeValueRequest attributeValueRequest);
 
     /**
      * Update attribute value

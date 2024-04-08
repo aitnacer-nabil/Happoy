@@ -30,10 +30,11 @@ public interface AttributeService {
 
     /**
      * Update attribute
+     * @param id of attribute
      * @param attributeDto
      * @return updated attributeDto
      */
-    AttributeDto updateAttribute(AttributeDto attributeDto);
+    AttributeDto updateAttribute(Long id,AttributeDto attributeDto);
 
 
 

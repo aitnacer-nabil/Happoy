@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: Media-service
+  config:
+    import: configserver:http://localhost:3000/
