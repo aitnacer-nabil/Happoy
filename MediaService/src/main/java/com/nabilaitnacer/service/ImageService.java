@@ -6,8 +6,7 @@ import com.google.auth.oauth2.GoogleCredentials;
 import com.google.cloud.storage.BlobId;
 import com.google.cloud.storage.BlobInfo;
 import com.google.cloud.storage.Storage;
-import com.nabilaitnacer.repository.MediaRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import com.google.cloud.storage.StorageOptions;
@@ -23,14 +22,11 @@ import java.nio.file.Files;
 import java.util.UUID;
 
 @Service
+@RequiredArgsConstructor
 public class ImageService {
 
-    private final MediaRepository mediaRespository;
 
-    @Autowired
-    public ImageService(MediaRepository mediaRespository){
-        this.mediaRespository=mediaRespository;
-    }
+
 
     private File convertToFile(MultipartFile multipartFile, String fileName) throws IOException {
         File tempFile = new File(fileName);
@@ -41,13 +37,13 @@ public class ImageService {
         return tempFile;
     }
     private String uploadFile(File file, String fileName) throws IOException {
-        BlobId blobId = BlobId.of("mediaservice-7dd57.appspot.com", fileName);
+        BlobId blobId = BlobId.of("insta-downloader-71d7a.appspot.com", fileName);
         BlobInfo blobInfo = BlobInfo.newBuilder(blobId).setContentType("media").build();
-        InputStream inputStream = ImageService.class.getClassLoader().getResourceAsStream("mediaservice-7dd57-firebase-adminsdk-8gt5d-e674837a88.json");
+        InputStream inputStream = ImageService.class.getClassLoader().getResourceAsStream("media-service-firestorage.json");
         Credentials credentials = GoogleCredentials.fromStream(inputStream);
         Storage storage = StorageOptions.newBuilder().setCredentials(credentials).build().getService();
         storage.create(blobInfo, Files.readAllBytes(file.toPath()));
-        String DOWNLOAD_URL = "https://firebasestorage.googleapis.com/v0/b/mediaservice-7dd57.appspot.com/o/%s?alt=media";
+        String DOWNLOAD_URL = "https://firebasestorage.googleapis.com/v0/b/insta-downloader-71d7a.appspot.com/o/%s?alt=media";
         return String.format(DOWNLOAD_URL, URLEncoder.encode(fileName, StandardCharsets.UTF_8));
     }
     private String getExtension(String fileName) {

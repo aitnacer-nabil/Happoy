@@ -113,3 +113,11 @@ fSpecifications-Service/src/main/java/com/nabilaitnacer/specificationsservice/dt
 kSpecifications-Service/src/main/java/com/nabilaitnacer/specificationsservice/dto/AttrubuteValueRequest.java,4\5\4502fd9aa18a509cd07782d8c71174ccfe70e53a
 ›
 kSpecifications-Service/src/main/java/com/nabilaitnacer/specificationsservice/dto/AttributeValueRequest.java,f\3\f3d073e2cd0da94c151633e20f85be6e633bd13e
+p
+@MediaService/src/main/java/com/nabilaitnacer/entities/Media.java,d\e\def8175771f298f3e5b3b321cf3229905d8e678e
+o
+?MediaService/src/main/java/com/nabilaitnacer/config/Config.java,1\7\17c7fe43a5f6932cfd1607d608c55e8ec0adfd70
+v
+FMediaService/src/main/java/com/nabilaitnacer/config/Configuration.java,a\b\abc3043de8305df50f8d46c7652adcc5fb056409
+‚
+RMediaService/src/main/java/com/nabilaitnacer/config/ConfigurationMediaService.java,a\5\a562d1e63eb3e734e7050a281f4952f95eb8d326

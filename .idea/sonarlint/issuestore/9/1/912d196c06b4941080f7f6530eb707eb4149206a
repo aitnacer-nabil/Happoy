@@ -1,10 +1,8 @@
 
-k	java:S1172"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(áßÃøıÿÿÿÿ
-k	java:S117?"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¾åã×øÿÿÿÿ
-}
-java:S4087'"bRemove this "close" call; closing the resource is handled automatically by the try-with-resources.(æŒÕ®ùÿÿÿÿ
-U	java:S899@";Do something with the "boolean" value returned by "delete".(²Œ­ûÿÿÿÿ
-i
-java:S4042@"NUse "java.nio.file.Files#delete" here for better messages on error conditions.(²Œ­ûÿÿÿÿ
-O
-java:S1068"4Remove this unused "mediaRespository" private field.(ÊœüÑøÿÿÿÿ
+‘	java:S117."QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ù¥¥ÃøÿÿÿÿJ$01951bec-aa54-409f-bd1a-98ba4d6c9321
+‘	java:S117;"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¾åã×øÿÿÿÿJ$3a87edfd-2201-4648-9caa-6e8ba33a94f0
+ª
+java:S4087#"bRemove this "close" call; closing the resource is handled automatically by the try-with-resources.(æŒÕ®ùÿÿÿÿ8âÉÀöë1J$3eea3857-5419-4d63-ab60-a11f42158efd
+‚	java:S899<";Do something with the "boolean" value returned by "delete".(²Œ­ûÿÿÿÿ8úÉÀöë1J$122d7b4c-08eb-4ede-8b2e-8ef86ba8b0dc
+–
+java:S4042<"NUse "java.nio.file.Files#delete" here for better messages on error conditions.(²Œ­ûÿÿÿÿ8ûÉÀöë1J$e248326f-6e85-4d48-83bc-7174677e6c14
