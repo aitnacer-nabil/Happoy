@@ -168,3 +168,11 @@ TAds-Service/src/main/java/com/nabilaitnacer/adsservice/controller/AdsController
 QAds-Service/src/main/java/com/nabilaitnacer/adsservice/AdsServiceApplication.java,d\5\d5a81974ecf5be6ced80b808862cbc65b009172d
 z
 JAds-Service/src/main/java/com/nabilaitnacer/adsservice/dto/AdsRequest.java,9\6\96e4a22ceea29b4fa7b1bf3985370b1a9a9bac5c
+y
+IAds-Service/src/main/java/com/nabilaitnacer/adsservice/dto/AdsUpdate.java,0\e\0eab877e49c8e9754ae974a12cb16b1977332f3c
+|
+LAds-Service/src/main/java/com/nabilaitnacer/adsservice/dto/AdsStatusDto.java,7\6\76908da620c13bfe82be9ca5309fdc83cad86d5c
+É
+SAds-Service/src/main/java/com/nabilaitnacer/adsservice/config/JwtAuthConverter.java,c\4\c449c8c491db7469eed0d3ef096d422d692381f9
+Å
+QAds-Service/src/main/java/com/nabilaitnacer/adsservice/config/SecurityConfig.java,1\e\1e5adee1db3c1ecb9a7fbf1f41151c0e25aa4ca9

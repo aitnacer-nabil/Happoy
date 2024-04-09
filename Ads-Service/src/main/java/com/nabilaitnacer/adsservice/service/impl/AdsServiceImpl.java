@@ -2,6 +2,7 @@ package com.nabilaitnacer.adsservice.service.impl;
 
 import com.nabilaitnacer.adsservice.dto.AdsDto;
 import com.nabilaitnacer.adsservice.dto.AdsRequest;
+import com.nabilaitnacer.adsservice.dto.AdsUpdate;
 import com.nabilaitnacer.adsservice.entity.Ads;
 import com.nabilaitnacer.adsservice.entity.AdsStatus;
 import com.nabilaitnacer.adsservice.exception.ResourceNotFoundException;
@@ -23,7 +24,7 @@ public class AdsServiceImpl  implements AdsService {
     private final ModelMapper modelMapper;
     @Override
     public List<AdsDto> getAllAds() {
-        return adsRepository.findAll().stream().map(ads -> modelMapper.map(ads, AdsDto.class)).collect(Collectors.toList());
+        return adsRepository.findAll().stream().map(ads -> modelMapper.map(ads, AdsDto.class)).toList();
 
     }
 
@@ -40,26 +41,24 @@ public class AdsServiceImpl  implements AdsService {
     }
 
     @Override
-    public AdsDto updateAd(Long id , AdsRequest adsRequest) {
+    public AdsDto updateAd(Long id , AdsUpdate adsUpdate) {
         Ads ads = getAds(id);
-        if(adsRequest.getTitle() != null) {
-            ads.setTitle(adsRequest.getTitle());
+        if(adsUpdate.getTitle() != null) {
+            ads.setTitle(adsUpdate.getTitle());
         }
-        if(adsRequest.getDescription() != null) {
-            ads.setDescription(adsRequest.getDescription());
+        if(adsUpdate.getDescription() != null) {
+            ads.setDescription(adsUpdate.getDescription());
         }
-        if(adsRequest.getPrice() != null) {
-            ads.setPrice(adsRequest.getPrice());
+        if(adsUpdate.getPrice() != null) {
+            ads.setPrice(adsUpdate.getPrice());
         }
-        if(adsRequest.getCategory() != null) {
-            ads.setCategory(adsRequest.getCategory());
+        if(adsUpdate.getCategory() != null) {
+            ads.setCategory(adsUpdate.getCategory());
         }
-        if(adsRequest.getCity() != null) {
-            ads.setCity(adsRequest.getCity());
+        if(adsUpdate.getCity() != null) {
+            ads.setCity(adsUpdate.getCity());
         }
-        if( adsRequest.getStatus() != null && ads.getStatus() != AdsStatus.valueOf(adsRequest.getStatus().toString())) {
-            ads.setStatus(AdsStatus.valueOf(adsRequest.getStatus().toString()));
-        }
+
         Ads updatedAds = adsRepository.save(ads);
         return modelMapper.map(updatedAds,AdsDto.class);
     }
@@ -68,6 +67,15 @@ public class AdsServiceImpl  implements AdsService {
     public void deleteAd(Long id) {
         Ads ads = getAds(id);
         adsRepository.delete(ads);
+    }
+
+    @Override
+    public AdsDto changeAdStatus(Long id, String newStatus) {
+        AdsStatus adsStatus = AdsStatus.valueOf(newStatus);
+        Ads ads = getAds(id);
+        ads.setStatus(adsStatus)   ;
+        Ads updatedAds = adsRepository.save(ads);
+        return modelMapper.map(updatedAds,AdsDto.class);
     }
 
     private Ads getAds(Long id) {
