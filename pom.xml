@@ -8,6 +8,8 @@
         <module>api-gateway</module>
         <module>eureka-service</module>
         <module>MediaService</module>
+        <module>Ads-Service</module>
+        <module>User-service</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

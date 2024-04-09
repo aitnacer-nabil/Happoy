@@ -19,6 +19,8 @@ import java.io.InputStream;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -32,7 +34,7 @@ public class ImageService {
         File tempFile = new File(fileName);
         try (FileOutputStream fos = new FileOutputStream(tempFile)) {
             fos.write(multipartFile.getBytes());
-            fos.close();
+
         }
         return tempFile;
     }
@@ -43,8 +45,8 @@ public class ImageService {
         Credentials credentials = GoogleCredentials.fromStream(inputStream);
         Storage storage = StorageOptions.newBuilder().setCredentials(credentials).build().getService();
         storage.create(blobInfo, Files.readAllBytes(file.toPath()));
-        String DOWNLOAD_URL = "https://firebasestorage.googleapis.com/v0/b/insta-downloader-71d7a.appspot.com/o/%s?alt=media";
-        return String.format(DOWNLOAD_URL, URLEncoder.encode(fileName, StandardCharsets.UTF_8));
+        String downloadUrl = "https://firebasestorage.googleapis.com/v0/b/insta-downloader-71d7a.appspot.com/o/%s?alt=media";
+        return String.format(downloadUrl, URLEncoder.encode(fileName, StandardCharsets.UTF_8));
     }
     private String getExtension(String fileName) {
         return fileName.substring(fileName.lastIndexOf("."));
@@ -56,12 +58,19 @@ public class ImageService {
             String fileName = multipartFile.getOriginalFilename();
             fileName = UUID.randomUUID().toString().concat(this.getExtension(fileName));
             File file = this.convertToFile(multipartFile, fileName);
-            String URL = this.uploadFile(file, fileName);
+            String url = this.uploadFile(file, fileName);
             file.delete();
-            return URL;
+            return url;
         } catch (Exception e) {
-            e.printStackTrace();
+            //TODO Throw custom exception
             return "Image couldn't upload, Something went wrong";
         }
+    }
+    public List<String> uploadMultipleFiles(List<MultipartFile> multipartFiles) {
+        List<String> urls = new ArrayList<>();
+        for (MultipartFile multipartFile : multipartFiles) {
+            urls.add(this.upload(multipartFile));
+        }
+        return urls;
     }
 }

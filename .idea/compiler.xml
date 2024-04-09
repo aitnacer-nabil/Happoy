@@ -7,22 +7,25 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="api-gateway" />
         <module name="eureka-service" />
         <module name="User-service" />
-        <module name="MediaService" />
-        <module name="Specifications-Service" />
         <module name="Category-Service" />
+        <module name="api-gateway" />
+        <module name="MediaService" />
+        <module name="Ads-Service" />
+        <module name="Specifications-Service" />
       </profile>
       <profile name="Gradle Imported" enabled="true">
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.30/f195ee86e6c896ea47a1d39defbe20eb59cd149d/lombok-1.18.30.jar" />
         </processorPath>
-        <module name="Ads-service.main" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="Ads-service" target="17" />
+      <module name="Ads-service.main" target="17" />
+      <module name="Ads-service.test" target="17" />
       <module name="auth-service" target="17" />
       <module name="userservice" target="11" />
       <module name="UtilisateurService" target="17" />
@@ -30,6 +33,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="Ads-Service" options="-parameters" />
       <module name="Category-Service" options="-parameters" />
       <module name="Happoy" options="" />
       <module name="MediaService" options="-parameters" />
