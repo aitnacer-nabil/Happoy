@@ -30,7 +30,7 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.GET,"/api/v1/categories/**").permitAll()
                 .anyRequest().authenticated()
         );
-        http.oauth2ResourceServer(configuer -> configuer.jwt().jwtAuthenticationConverter(jwtAuthConverter));
+        http.oauth2ResourceServer(configurer -> configurer.jwt(jwtConfigurer -> jwtConfigurer.jwtAuthenticationConverter(jwtAuthConverter)));
 
 
 

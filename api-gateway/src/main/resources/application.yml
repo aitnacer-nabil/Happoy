@@ -5,11 +5,11 @@ spring:
     gateway:
         routes:
           - id: category-service
-            uri: lb://category-service
+            uri: http://localhost:8091
             predicates:
-              - Path=/category/**
+              - Path=/api/v1/categories/**
           - id: ads-service
-            uri: http://localhost:8072/
+            uri: http://localhost:8072
             predicates:
               - Path=/ads/**
 
