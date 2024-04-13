@@ -32,5 +32,5 @@ server:
 springdoc:
   swagger-ui:
     oauth:
-      client-id: backend-app
-      client-secret: qUKCf5DHhdzho9ZLWMellfNQbVpOgrFe
+      client-id: springboot-be
+      client-secret: zfopel8nyMgZ4kpUADHxHOn6WI67Zurx

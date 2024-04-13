@@ -1,7 +1,4 @@
 
-“	java:S117/"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(òèĞ·8¶ïúşé1J$d2729896-2091-455a-9605-523dbbdc612b
+m	java:S117/"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(òèĞ·8×«Èí1
 t
-java:S3655""RCall "attribute.isPresent()" or "!attribute.isEmpty()" before accessing the value.(á¨œ™úÿÿÿÿ8£ñªôë1
-u
-java:S1128
-"SRemove this unused import 'org.springframework.beans.factory.annotation.Autowired'.(¡¸Îùÿÿÿÿ8Çñªôë1
+java:S3655""RCall "attribute.isPresent()" or "!attribute.isEmpty()" before accessing the value.(á¨œ™úÿÿÿÿ8—‚«Èí1

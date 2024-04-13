@@ -6,6 +6,7 @@ import com.nabilaitnacer.specificationsservice.services.AttributeValueService;
 import jakarta.ws.rs.POST;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -33,12 +34,18 @@ public class AttributeController {
         return ResponseEntity.ok(attributeService.getAttributeById(id));
     }
 
+    @GetMapping("/category/{categoryId}")
+    public ResponseEntity<List<AttributeDto>> getAttributeByCategoryId(@PathVariable Long categoryId) {
+        return ResponseEntity.ok(attributeService.getAttributeByCategoryId(categoryId));
+    }
     @PostMapping
+    @PreAuthorize("hasRole('admin')")
     public ResponseEntity<AttributeDto> createAttribute(@RequestBody AttributeDto attributeDto) {
         return ResponseEntity.ok(attributeService.createAttribute(attributeDto));
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasRole('admin')")
     public ResponseEntity<AttributeDto> updateAttribute(@PathVariable Long id, @RequestBody AttributeDto attributeDto) {
         return ResponseEntity.ok(attributeService.updateAttribute(id, attributeDto));
     }

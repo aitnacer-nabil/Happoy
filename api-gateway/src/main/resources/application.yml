@@ -12,7 +12,14 @@ spring:
             uri: http://localhost:8072
             predicates:
               - Path=/ads/**
-
+          - id: specifications-service
+            uri: http://localhost:8092
+            predicates:
+              - Path=/attributes/**
+          - id: specifications-service-attributeValues
+            uri: http://localhost:8092
+            predicates:
+              - Path=/attributeValues/**
 
 
 server:

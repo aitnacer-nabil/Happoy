@@ -12,6 +12,12 @@ spring:
     show-sql: true
     database: postgresql
     database-platform: org.hibernate.dialect.PostgreSQLDialect
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8080/realms/dive-dev
+          jwk-set-uri: ${spring.security.oauth2.resourceserver.jwt.issuer-uri}/protocol/openid-connect/certs
 server:
   port: 8092
 
@@ -21,3 +27,9 @@ eureka:
     fetch-registry: true
     service-url:
       defaultZone: http://localhost:8761/eureka/
+
+springdoc:
+  swagger-ui:
+    oauth:
+      client-id: springboot-be
+      client-secret: zfopel8nyMgZ4kpUADHxHOn6WI67Zurx

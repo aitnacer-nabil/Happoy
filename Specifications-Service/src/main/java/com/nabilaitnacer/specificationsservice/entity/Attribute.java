@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Table
 @Data
@@ -15,8 +17,10 @@ public class Attribute {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable = false,unique = true)
+    @Column(nullable = false)
     private String name;
 
-    private  long categoryId;
+    private Long categoryId;
+
 }
+

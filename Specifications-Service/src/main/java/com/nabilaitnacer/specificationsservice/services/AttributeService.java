@@ -36,6 +36,13 @@ public interface AttributeService {
      */
     AttributeDto updateAttribute(Long id,AttributeDto attributeDto);
 
+    /**
+     * Get attribute by category id
+     * @param categoryId
+     * @return
+     */
+    List<AttributeDto> getAttributeByCategoryId(Long categoryId);
+
 
 
 

@@ -52,4 +52,10 @@ public class AttributeServiceImpl implements AttributeService {
     return modelMapper.map(attributeRepository.save(Attribute), AttributeDto.class);
 
     }
+
+    @Override
+    public List<AttributeDto> getAttributeByCategoryId(Long categoryId) {
+       List<Attribute> attributes = attributeRepository.findByCategoryId(categoryId);
+        return attributes.stream().map(attribute -> modelMapper.map(attribute, AttributeDto.class)).toList();
+    }
 }

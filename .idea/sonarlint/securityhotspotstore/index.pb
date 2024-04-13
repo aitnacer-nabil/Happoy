@@ -140,8 +140,6 @@ v
 FAds-Service/src/main/java/com/nabilaitnacer/adsservice/entity/Ads.java,3\6\3617c23d9a74f45fdcdcbd22e94bddb81eb2b86c
 D
 Ads-Service/mvnw.cmd,1\f\1f0dd256baf741ea6c6ff41f1645bdb136398bff
-î
-dAds-Service/src/main/java/com/nabilaitnacer/adsservice/exception/CategoryAlreadyExistsException.java,9\e\9e34fb577bd9a8b0164d9cd930cdef62fb1b4c88
 è
 _Ads-Service/src/main/java/com/nabilaitnacer/adsservice/exception/AdsAlreadyExistsException.java,b\4\b42f32845c25edd52ebac2e7086ecb08d678271a
 å
@@ -176,3 +174,7 @@ LAds-Service/src/main/java/com/nabilaitnacer/adsservice/dto/AdsStatusDto.java,7
 SAds-Service/src/main/java/com/nabilaitnacer/adsservice/config/JwtAuthConverter.java,c\4\c449c8c491db7469eed0d3ef096d422d692381f9
 Å
 QAds-Service/src/main/java/com/nabilaitnacer/adsservice/config/SecurityConfig.java,1\e\1e5adee1db3c1ecb9a7fbf1f41151c0e25aa4ca9
+ô
+iSpecifications-Service/src/main/java/com/nabilaitnacer/specificationsservice/config/JwtAuthConverter.java,8\9\89543483277cdf8cbd29e5b70bd5ebd808aca32c
+ó
+gSpecifications-Service/src/main/java/com/nabilaitnacer/specificationsservice/config/SecurityConfig.java,e\1\e1ef0408ebc35f65df1b4490b2ded45cf6f80035

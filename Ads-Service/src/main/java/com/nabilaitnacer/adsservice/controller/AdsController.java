@@ -11,6 +11,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -118,6 +119,7 @@ public class AdsController {
                     @ApiResponse(responseCode = "500", description = "Internal server error")
             })
     @PutMapping("/{id}/status")
+    @PreAuthorize("hasRole('admin')")
     public ResponseEntity<AdsDto> changeAdStatus(@PathVariable Long id, @RequestBody AdsStatusDto adsStatusDto) {
         return ResponseEntity.ok(adsService.changeAdStatus(id, adsStatusDto.getStatus()));
     }
