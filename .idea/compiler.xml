@@ -33,15 +33,15 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="Ads-Service" options="-parameters" />
+      <module name="Ads-Service" options="" />
       <module name="Category-Service" options="-parameters" />
       <module name="Happoy" options="" />
       <module name="MediaService" options="-parameters" />
       <module name="Specifications-Service" options="-parameters" />
-      <module name="User-service" options="-parameters" />
-      <module name="api-gateway" options="-parameters" />
+      <module name="User-service" options="" />
+      <module name="api-gateway" options="" />
       <module name="auth-service" options="-parameters" />
-      <module name="eureka-service" options="-parameters" />
+      <module name="eureka-service" options="" />
       <module name="userservice" options="-parameters" />
     </option>
   </component>

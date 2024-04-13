@@ -26,22 +26,27 @@ public class ImageController {
                 List<String> urls=imageService.uploadMultipleFiles(uploadMediaDto.files);
                 UploadResponse uploadResponse= UploadResponse.builder().adId(uploadMediaDto.adId).mediaDtos(new ArrayList<>()).build();
                    urls.forEach(url->{
-                       MediaDto media=mediaService.saveMedia(url);
+                       MediaDto media=mediaService.saveMedia(url,uploadMediaDto.adId);
                        uploadResponse.mediaDtos.add(media);
                    });
 
         return ResponseEntity.ok(uploadResponse);
     }
-    @PostMapping
-    public ResponseEntity<MediaDto> upload(@RequestParam("file") MultipartFile multipartFile) {
+    @PostMapping("/ad/{adId}")
+    public ResponseEntity<MediaDto> upload(@RequestParam("file") MultipartFile multipartFile,@PathVariable Long adId) {
                 String url=imageService.upload(multipartFile);
-                MediaDto media=mediaService.saveMedia(url);
+                MediaDto media=mediaService.saveMedia(url,adId);
         return ResponseEntity.ok(media);
     }
     @GetMapping("/{id}")
     public ResponseEntity<MediaDto> getMediaById(@PathVariable Long id) {
         MediaDto mediaDto = mediaService.getMedialById(id);
         return ResponseEntity.ok(mediaDto);
+    }
+    @GetMapping("/ad/{adId}")
+    public ResponseEntity<List<MediaDto>> getAllMediaByAdId(@PathVariable Long adId) {
+        List<MediaDto> mediaDtos = mediaService.getAllMediaByAdId(adId);
+        return ResponseEntity.ok(mediaDtos);
     }
 
     @PutMapping("/{id}")

@@ -178,3 +178,11 @@ QAds-Service/src/main/java/com/nabilaitnacer/adsservice/config/SecurityConfig.ja
 iSpecifications-Service/src/main/java/com/nabilaitnacer/specificationsservice/config/JwtAuthConverter.java,8\9\89543483277cdf8cbd29e5b70bd5ebd808aca32c
 —
 gSpecifications-Service/src/main/java/com/nabilaitnacer/specificationsservice/config/SecurityConfig.java,e\1\e1ef0408ebc35f65df1b4490b2ded45cf6f80035
+_
+/MediaService/src/main/resources/application.yml,f\2\f22a4fcabda2b6b916cb781ec78b96c2fe0a6a50
+|
+LMediaService/src/main/java/com/nabilaitnacer/repository/MediaRepository.java,3\7\37809330dbc3d179ef7b0dbaa5587699c8444d5d
+y
+IMediaService/src/main/java/com/nabilaitnacer/config/JwtAuthConverter.java,4\c\4c9b4fba83b0f5940c656a44039344c1f9efc43a
+w
+GMediaService/src/main/java/com/nabilaitnacer/config/SecurityConfig.java,6\9\6969a26bb1b379824965c507c9d54b53b2f70d0b

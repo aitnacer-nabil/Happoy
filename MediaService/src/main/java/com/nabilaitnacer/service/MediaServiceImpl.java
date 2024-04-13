@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import com.nabilaitnacer.entities.Media;
 
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -24,10 +25,11 @@ public class MediaServiceImpl implements MediaService{
 
 
     @Override
-    public MediaDto saveMedia(String imageUrl) {
+    public MediaDto saveMedia(String imageUrl, Long adId) {
         try {
             Media media = new Media();
             media.setImageUrl(imageUrl);
+            media.setAdId(adId);
             Media savedMedia = mediaRepository.save(media);
             return modelMapper.map(savedMedia, MediaDto.class);
         } catch (Exception e) {
@@ -52,6 +54,12 @@ public class MediaServiceImpl implements MediaService{
             log.error("error lors de la recupeerration du media");
             throw new ServiceException("Erreur lors de la recuperation du media: " + id, e);
         }
+    }
+
+    @Override
+    public List<MediaDto> getAllMediaByAdId(Long adId) {
+        List<Media> mediaList = mediaRepository.findByAdId(adId);
+        return mediaList.stream().map(media -> modelMapper.map(media, MediaDto.class)).toList();
     }
 
     @Override

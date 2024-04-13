@@ -15,4 +15,5 @@ public class Media {
     @SequenceGenerator(name = "sequence_media",sequenceName = "sequence_media",allocationSize = 1)
     private Long id;
     private String imageUrl;
+    private Long adId;
 }

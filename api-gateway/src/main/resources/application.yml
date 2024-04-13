@@ -20,6 +20,10 @@ spring:
             uri: http://localhost:8092
             predicates:
               - Path=/attributeValues/**
+          - id: media-service
+            uri: http://localhost:8099
+            predicates:
+              - Path=/api/v1/media/**
 
 
 server:
