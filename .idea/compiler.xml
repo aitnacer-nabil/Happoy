@@ -38,7 +38,7 @@
       <module name="Happoy" options="" />
       <module name="MediaService" options="-parameters" />
       <module name="Specifications-Service" options="-parameters" />
-      <module name="User-service" options="" />
+      <module name="User-service" options="-parameters" />
       <module name="api-gateway" options="" />
       <module name="auth-service" options="-parameters" />
       <module name="eureka-service" options="" />

@@ -186,3 +186,5 @@ y
 IMediaService/src/main/java/com/nabilaitnacer/config/JwtAuthConverter.java,4\c\4c9b4fba83b0f5940c656a44039344c1f9efc43a
 w
 GMediaService/src/main/java/com/nabilaitnacer/config/SecurityConfig.java,6\9\6969a26bb1b379824965c507c9d54b53b2f70d0b
+y
+IUser-service/src/main/java/com/nabilaitnacer/userservice/utils/Utils.java,4\d\4ddfc3f31d4613d3ad1e02ef36866dd9ced125fc

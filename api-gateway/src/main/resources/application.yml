@@ -24,6 +24,10 @@ spring:
             uri: http://localhost:8099
             predicates:
               - Path=/api/v1/media/**
+          - id: user-service
+            uri: http://localhost:8095
+            predicates:
+              - Path=/keycloak//**
 
 
 server:

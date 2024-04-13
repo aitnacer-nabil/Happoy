@@ -9,6 +9,7 @@ import java.util.List;
 import com.nabilaitnacer.userservice.dto.Role;
 import com.nabilaitnacer.userservice.dto.User;
 import com.nabilaitnacer.userservice.security.KeycloakSecurityUtil;
+import com.nabilaitnacer.userservice.utils.Utils;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.extern.slf4j.Slf4j;
 import org.keycloak.admin.client.Keycloak;
@@ -18,13 +19,7 @@ import org.keycloak.representations.idm.RoleRepresentation;
 import org.keycloak.representations.idm.UserRepresentation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 import jakarta.ws.rs.core.Response;
@@ -62,7 +57,8 @@ public class UserResource {
     }
 
     @PostMapping(value = "/user")
-    public Response createUser(User user) {
+    public Response createUser(@RequestBody User user) {
+        user.setId(Utils.generateUUID());
         UserRepresentation userRep = mapUserRep(user);
         Keycloak keycloak = keycloakUtil.getKeycloak();
         Response res = keycloak.realm(realm).users().create(userRep);

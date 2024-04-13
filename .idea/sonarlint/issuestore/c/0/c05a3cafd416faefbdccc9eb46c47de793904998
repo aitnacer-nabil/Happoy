@@ -1,9 +1,7 @@
 
-‰
-java:S2095D"FUse try-with-resources or close this "Response" in a "finally" clause.(éî¡ã8Ò¿ãğë1J$fb885e0d-1350-42b9-b3df-07a964473072
 …
-java:S6813'"BRemove this field injection and use constructor injection instead.(êæÄŞ8Ù¿ãğë1J$64be5246-0629-4969-94bb-78439b6ea7f9
+java:S6813""BRemove this field injection and use constructor injection instead.(êæÄŞ8ÎÒ½Éí1J$8d6fe058-7417-4227-b7c4-cce26e05bd47
 z
-java:S1854D"7Remove this useless assignment to local variable "res".(éî¡ã8ò¿ãğë1J$e115924a-ae00-424c-9e03-af65237639cd
+java:S1854@"7Remove this useless assignment to local variable "res".(éî¡ã8òÒ½Éí1J$d1cbc2bd-98d6-4240-85bf-dd3b58494e80
 k
-java:S1481D"(Remove this unused "res" local variable.(éî¡ã8ø¿ãğë1J$196e01bb-0fe0-4fb8-89f9-8a8cfcb83910
+java:S1481@"(Remove this unused "res" local variable.(éî¡ã8ıÒ½Éí1J$ea7571d1-3f4c-4455-a251-9c957b25166b
