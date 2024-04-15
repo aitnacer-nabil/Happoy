@@ -14,6 +14,7 @@
         <module name="MediaService" />
         <module name="Ads-Service" />
         <module name="Specifications-Service" />
+        <module name="adsFeeds" />
       </profile>
       <profile name="Gradle Imported" enabled="true">
         <outputRelativeToContentRoot value="true" />
@@ -33,15 +34,16 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="Ads-Service" options="" />
+      <module name="Ads-Service" options="-parameters" />
       <module name="Category-Service" options="-parameters" />
       <module name="Happoy" options="" />
       <module name="MediaService" options="-parameters" />
       <module name="Specifications-Service" options="-parameters" />
       <module name="User-service" options="-parameters" />
-      <module name="api-gateway" options="" />
+      <module name="adsFeeds" options="-parameters" />
+      <module name="api-gateway" options="-parameters" />
       <module name="auth-service" options="-parameters" />
-      <module name="eureka-service" options="" />
+      <module name="eureka-service" options="-parameters" />
       <module name="userservice" options="-parameters" />
     </option>
   </component>

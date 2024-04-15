@@ -1,5 +1,7 @@
 package com.nabilaitnacer.adsservice.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nabilaitnacer.adsservice.dto.AdsDto;
 import com.nabilaitnacer.adsservice.dto.AdsRequest;
 import com.nabilaitnacer.adsservice.dto.AdsStatusDto;
@@ -10,9 +12,11 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -34,6 +38,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/ads")
+@Slf4j
 public class AdsController {
     private final AdsService adsService;
 
@@ -61,8 +66,10 @@ public class AdsController {
                     @ApiResponse(responseCode = "500", description = "Internal server error")
             })
     @PostMapping("/save")
-    public ResponseEntity<AdsDto> saveAd(@RequestBody AdsRequest adsDto) {
-        return ResponseEntity.ok(adsService.saveAd(adsDto));
+    public ResponseEntity<AdsDto> saveAd(@RequestPart("ad") String adDtoStr, @RequestPart("files") List<MultipartFile> files, @RequestHeader("Authorization") String token) throws JsonProcessingException {
+        AdsRequest adsDto = new ObjectMapper().readValue(adDtoStr, AdsRequest.class);
+        log.info("Token: {}",token);
+        return ResponseEntity.ok(adsService.saveAd(adsDto, files, token));
     }
     @Operation(
             summary = "Get an ad by id",
@@ -122,6 +129,21 @@ public class AdsController {
     @PreAuthorize("hasRole('admin')")
     public ResponseEntity<AdsDto> changeAdStatus(@PathVariable Long id, @RequestBody AdsStatusDto adsStatusDto) {
         return ResponseEntity.ok(adsService.changeAdStatus(id, adsStatusDto.getStatus()));
+    }
+
+    @Operation(
+            summary = "Get all ads by user id",
+            description = "Get all ads by user id from the Database"
+    )
+    @ApiResponses(
+            value = {
+                    @ApiResponse(responseCode = "200", description = "Ads retrieved successfully"),
+                    @ApiResponse(responseCode = "404", description = "Ads not found"),
+                    @ApiResponse(responseCode = "500", description = "Internal server error")
+            })
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<List<AdsDto>> getAdsByUserId(@PathVariable String userId) {
+        return ResponseEntity.ok(adsService.getAdsByUserId(userId));
     }
 
 

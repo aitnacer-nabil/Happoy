@@ -2,6 +2,7 @@ package com.nabilaitnacer.adsservice.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
@@ -15,14 +16,20 @@ import java.time.LocalDateTime;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class Ads {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(length = 500)
     private String title;
+    @Column(length = 500)
     private String description;
-    private Long userId;
+    @Column(length = 500)
+    private String userId;
+    @Column(length = 500)
     private String category;
+    private Long categoryId;
     private String city;
     private BigDecimal price;
     @Enumerated(EnumType.STRING)

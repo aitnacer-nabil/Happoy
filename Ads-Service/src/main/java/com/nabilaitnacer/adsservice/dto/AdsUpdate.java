@@ -15,7 +15,7 @@ public class AdsUpdate {
     Long id;
     String title;
     String description;
-    Long userId;
+    String userId;
     String category;
     String city;
     BigDecimal price;

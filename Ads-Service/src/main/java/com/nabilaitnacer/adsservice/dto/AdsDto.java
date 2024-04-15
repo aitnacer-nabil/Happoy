@@ -18,11 +18,12 @@ public class AdsDto implements Serializable {
     Long id;
     String title;
     String description;
-    Long userId;
+    String userId;
     String category;
     String city;
     BigDecimal price;
     AdsStatus status;
     LocalDateTime createdAt;
     LocalDateTime updatedAt;
+
 }

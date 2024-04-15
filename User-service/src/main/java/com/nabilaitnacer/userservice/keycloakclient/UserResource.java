@@ -7,6 +7,7 @@ import java.util.List;
 
 
 import com.nabilaitnacer.userservice.dto.Role;
+import com.nabilaitnacer.userservice.dto.UpdatePassword;
 import com.nabilaitnacer.userservice.dto.User;
 import com.nabilaitnacer.userservice.security.KeycloakSecurityUtil;
 import com.nabilaitnacer.userservice.utils.Utils;
@@ -53,6 +54,7 @@ public class UserResource {
     @GetMapping(value = "/users/{id}")
     public User getUser(@PathVariable("id") String id) {
         Keycloak keycloak = keycloakUtil.getKeycloak();
+
         return mapUser(keycloak.realm(realm).users().get(id).toRepresentation());
     }
 
@@ -66,11 +68,51 @@ public class UserResource {
     }
 
     @PutMapping(value = "/user")
-    public Response updateUser(User user) {
+    public Response updateUser(@RequestBody User user) {
+        log.info("Updating user: {}", user);
         UserRepresentation userRep = mapUserRep(user);
+        log.info("User representation: {}", userRep);
         Keycloak keycloak = keycloakUtil.getKeycloak();
+        log.info("Keycloak: {}", keycloak);
         keycloak.realm(realm).users().get(user.getId()).update(userRep);
         return Response.ok(user).build();
+    }
+    @GetMapping(value = "/user/{id}/credential-types")
+    public List<String> getUserCredentialTypes(@PathVariable("id") String id) {
+        Keycloak keycloak = keycloakUtil.getKeycloak();
+        return keycloak.realm(realm).users().get(id).getConfiguredUserStorageCredentialTypes();
+    }
+    @PutMapping(value = "/user/password")
+    public Response updateUserPassword(@RequestBody UpdatePassword user) {
+        log.info("Updating password for user: {}", user);
+        Keycloak keycloak = keycloakUtil.getKeycloak();
+        UserRepresentation userRep = keycloak.realm(realm).users().get(user.getId()).toRepresentation();
+        log.info("User representation: {}", userRep.getCredentials());
+
+        // Get the current password from Keycloak
+        List<CredentialRepresentation> currentCredentials = userRep.getCredentials();
+        String currentPassword = currentCredentials.stream()
+                .filter(cred -> cred.getType().equals("password"))
+                .findFirst()
+                .map(CredentialRepresentation::getValue)
+                .orElse(null);
+
+        // Check if the sent password matches the current password
+        if (user.getPassword().equals(currentPassword)) {
+            // Update the password
+            CredentialRepresentation newCred = new CredentialRepresentation();
+            newCred.setType(CredentialRepresentation.PASSWORD);
+            newCred.setValue(user.getNewPassword());
+            newCred.setTemporary(false);
+            userRep.setCredentials(Arrays.asList(newCred));
+
+            keycloak.realm(realm).users().get(user.getId()).update(userRep);
+            log.info("Password updated for user: {}", user);
+            return Response.ok(user).build();
+        } else {
+            log.info("Sent password does not match the current password for user: {}", user);
+            return Response.status(Response.Status.BAD_REQUEST).entity("Sent password does not match the current password").build();
+        }
     }
 
     @DeleteMapping(value = "/users/{id}")
@@ -113,6 +155,7 @@ public class UserResource {
         user.setLastName(userRep.getLastName());
         user.setEmail(userRep.getEmail());
         user.setUserName(userRep.getUsername());
+
         return user;
     }
 

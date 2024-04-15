@@ -188,3 +188,5 @@ w
 GMediaService/src/main/java/com/nabilaitnacer/config/SecurityConfig.java,6\9\6969a26bb1b379824965c507c9d54b53b2f70d0b
 y
 IUser-service/src/main/java/com/nabilaitnacer/userservice/utils/Utils.java,4\d\4ddfc3f31d4613d3ad1e02ef36866dd9ced125fc
+@
+adsFeeds/HELP.md,6\c\6c29f6a7f70288aeb0db141e00f3921940d50dc2

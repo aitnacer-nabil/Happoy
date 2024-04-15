@@ -6,10 +6,13 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -21,12 +24,17 @@ public class AdsRequest  implements Serializable {
     @NotNull
     String description;
     @NotNull
-    Long userId;
+    String userId;
     @NotNull
-    String category;
+     String category;
+    @NotNull
+    Long categoryId;
     @NotNull
     String city;
     @NotNull
     BigDecimal price;
+    @NotNull
+     List<MultipartFile> files;
+    AttributeValueRequest attributeValue;
 
 }

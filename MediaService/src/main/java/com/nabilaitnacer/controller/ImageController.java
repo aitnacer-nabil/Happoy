@@ -21,12 +21,13 @@ public class ImageController {
     private final ImageService imageService;
     private final MediaServiceImpl mediaService;
 
+
     @PostMapping("/list")
-    public ResponseEntity<UploadResponse> uploadListMedia(@ModelAttribute UploadMediaDto uploadMediaDto) {
-                List<String> urls=imageService.uploadMultipleFiles(uploadMediaDto.files);
-                UploadResponse uploadResponse= UploadResponse.builder().adId(uploadMediaDto.adId).mediaDtos(new ArrayList<>()).build();
+    public ResponseEntity<UploadResponse> uploadListMedia(@RequestParam("files") List<MultipartFile> files, @RequestParam("adId") Long adId) {
+                List<String> urls=imageService.uploadMultipleFiles(files);
+                UploadResponse uploadResponse= UploadResponse.builder().adId(adId).mediaDtos(new ArrayList<>()).build();
                    urls.forEach(url->{
-                       MediaDto media=mediaService.saveMedia(url,uploadMediaDto.adId);
+                       MediaDto media=mediaService.saveMedia(url,adId);
                        uploadResponse.mediaDtos.add(media);
                    });
 

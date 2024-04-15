@@ -3,6 +3,7 @@ package com.nabilaitnacer.specificationsservice.controller;
 
 import com.nabilaitnacer.specificationsservice.dto.AttributeValueDto;
 import com.nabilaitnacer.specificationsservice.dto.AttributeValueRequest;
+import com.nabilaitnacer.specificationsservice.dto.AttributeValueResponse;
 import com.nabilaitnacer.specificationsservice.services.AttributeValueService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,9 +23,9 @@ public class AttributeValueController {
 
 
     @GetMapping("/ad/{adsId}")
-    public ResponseEntity<AttributeValueRequest> getAttributeValueRequestByAdsId(@PathVariable Long adsId) {
+    public ResponseEntity<AttributeValueResponse> getAttributeValueRequestByAdsId(@PathVariable Long adsId) {
         log.info("Getting attribute value request by ads id: {}", adsId);
-        AttributeValueRequest attributeValueRequest = attributeValueService.getAttributeValueRequestByAdsId(adsId);
+        AttributeValueResponse attributeValueRequest = attributeValueService.getAttributeValueRequestByAdsId(adsId);
         log.info("Attribute value request: {}", attributeValueRequest);
 
         return ResponseEntity.ok(attributeValueRequest);
@@ -37,6 +38,7 @@ public class AttributeValueController {
 
     @PostMapping
     public ResponseEntity<Void> createAttributeValue(@RequestBody AttributeValueRequest  attributeValueDto) {
+        log.info("Creating attribute value: {}", attributeValueDto);
         attributeValueService.createAttributeValue(attributeValueDto);
         return ResponseEntity.ok().build();
     }
