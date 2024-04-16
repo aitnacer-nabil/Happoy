@@ -15,8 +15,8 @@ pipeline {
         stage('Clean and Test Category-Service') {
             steps {
                 dir('Category-Service') {
-                    bat 'mvn clean'
-                    bat 'mvn test'
+                    sh 'mvn clean'
+                    sh 'mvn test'
                 }
             }
         }
