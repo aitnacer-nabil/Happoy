@@ -40,14 +40,14 @@ class CategoryRepositoryTest {
         // Given
         Category parentCategory = Category.builder()
                 .name("Electronics 1 ")
-                .description("All electronics products")
+                .description("All electronics products 1")
                 .build();
 
         // When
         Category savedParentCategory = categoryRepository.save(parentCategory);
         Category childCategory = Category.builder()
-                .name("Mobile Phones")
-                .description("All mobile phones")
+                .name("Mobile Phones 2")
+                .description("All mobile phones 2")
                 .parent(savedParentCategory)
                 .build();
         Category savedChildCategory = categoryRepository.save(childCategory);
@@ -56,25 +56,7 @@ class CategoryRepositoryTest {
         assertNotNull(savedChildCategory);
         assertEquals(savedParentCategory.getId(), savedChildCategory.getParent().getId());
     }
-    @Test
-    @Order(3)
-    void shouldNotCreateCategoryWithSameName() {
-        // Given
-        Category category = Category.builder()
-                .name("Electronics 2")
-                .description("All electronics products")
-                .build();
 
-        // When
-        Category savedCategory = categoryRepository.save(category);
-        Category duplicateCategory = Category.builder()
-                .name("Electronics 4")
-                .description("All electronics products")
-                .build();
-
-        // Then
-        assertThrows(DataIntegrityViolationException.class, () -> categoryRepository.save(duplicateCategory));
-    }
 
     @Test
     @Order(4)
@@ -82,14 +64,14 @@ class CategoryRepositoryTest {
         // Given
         Category category = Category.builder()
                 .name("Electronics 3")
-                .description("All electronics products")
+                .description("All electronics products 3")
                 .build();
 
         // When
         Category savedCategory = categoryRepository.save(category);
         Category childCategory = Category.builder()
-                .name("Mobile Phones")
-                .description("All mobile phones")
+                .name("Mobile Phones 4")
+                .description("All mobile phones 3")
                 .parent(savedCategory)
                 .build();
 

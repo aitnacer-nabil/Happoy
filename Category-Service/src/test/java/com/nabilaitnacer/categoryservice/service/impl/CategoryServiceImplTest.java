@@ -39,7 +39,7 @@ class CategoryServiceImplTest {
     void shouldMapCategoryToCategoryDtoWhenCreatingCategory() {
         // Given
         CategoryDto categoryDto = new CategoryDto();
-        categoryDto.setName("Electronics");
+        categoryDto.setName("Electronics 1");
         categoryDto.setDescription("All electronics products");
 
         Category category = modelMapper.map(categoryDto, Category.class);
@@ -64,7 +64,7 @@ class CategoryServiceImplTest {
 
         Category existingCategory = new Category();
         existingCategory.setId(1L);
-        existingCategory.setName("Electronics");
+        existingCategory.setName("Electronics 5");
         existingCategory.setDescription("All electronics products");
 
         Category updatedCategory = new Category();
