@@ -39,7 +39,7 @@ class CategoryRepositoryTest {
     void shouldCreateChildCategoryWithParentCategory() {
         // Given
         Category parentCategory = Category.builder()
-                .name("Electronics ")
+                .name("Electronics 1 ")
                 .description("All electronics products")
                 .build();
 
@@ -61,14 +61,14 @@ class CategoryRepositoryTest {
     void shouldNotCreateCategoryWithSameName() {
         // Given
         Category category = Category.builder()
-                .name("Electronics")
+                .name("Electronics 2")
                 .description("All electronics products")
                 .build();
 
         // When
         Category savedCategory = categoryRepository.save(category);
         Category duplicateCategory = Category.builder()
-                .name("Electronics")
+                .name("Electronics 4")
                 .description("All electronics products")
                 .build();
 
@@ -81,7 +81,7 @@ class CategoryRepositoryTest {
     void shouldNotCreateChildCategoryWithParentCategoryBeingItself() {
         // Given
         Category category = Category.builder()
-                .name("Electronics")
+                .name("Electronics 3")
                 .description("All electronics products")
                 .build();
 
