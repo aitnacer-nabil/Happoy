@@ -1,12 +1,103 @@
 services:
   category-service:
-    build:
-      context: ./category-service
-      dockerfile: Dockerfile
+    build: ./category-service
+    container_name: category-service
     ports:
-      - "8080:8080"
-    depends_on:
-      - mongo
-    environment:
-      - MONGO_URI=mongodb://mongo:27017/category-service
+      - '8091:8091'
+    command: ["java","-jar", "app.jar"]
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8091/actuator/health" ]
+      interval: 10s
+      retries: 4
 
+  ads-service:
+    build: ./ads-service
+    container_name: ads-service
+    ports:
+      - '8072:8072'
+    command: ["java","-jar", "app.jar"]
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8072/actuator/health" ]
+      interval: 10s
+      retries: 4
+
+  specifications-service:
+    build: ./specifications-service
+    container_name: specifications-service
+    ports:
+      - '8092:8092'
+    command: ["java","-jar", "app.jar"]
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8092/actuator/health" ]
+      interval: 10s
+      retries: 4
+
+  specifications-service-attributeValues:
+    build: ./specifications-service-attributeValues
+    container_name: specifications-service-attributeValues
+    ports:
+      - '8092:8092'
+    command: ["java","-jar", "app.jar"]
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8092/actuator/health" ]
+      interval: 10s
+      retries: 4
+
+  media-service:
+    build: ./media-service
+    container_name: media-service
+    ports:
+      - '8099:8099'
+    command: ["java","-jar", "app.jar"]
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8099/actuator/health" ]
+      interval: 10s
+      retries: 4
+
+  user-service:
+    build: ./user-service
+    container_name: user-service
+    ports:
+      - '8095:8095'
+    command: ["java","-jar", "app.jar"]
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8095/actuator/health" ]
+      interval: 10s
+      retries: 4
+
+  adsFeeds-service:
+    build: ./adsFeeds-service
+    container_name: adsFeeds-service
+    ports:
+      - '8079:8079'
+    command: ["java","-jar", "app.jar"]
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8079/actuator/health" ]
+      interval: 10s
+      retries: 4
+
+  api-gateway:
+    build: ./api-gateway
+    container_name: api-gateway
+    ports:
+      - '8093:8093'
+    command: ["java","-jar", "app.jar"]
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8093/actuator/health" ]
+      interval: 10s
+      retries: 4
+    depends_on:
+      category-service:
+        condition: service_healthy
+      ads-service:
+        condition: service_healthy
+      specifications-service:
+        condition: service_healthy
+      specifications-service-attributeValues:
+        condition: service_healthy
+      media-service:
+        condition: service_healthy
+      user-service:
+        condition: service_healthy
+      adsFeeds-service:
+        condition: service_healthy
